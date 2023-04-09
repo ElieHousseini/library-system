@@ -163,7 +163,7 @@ const MyForm: React.FC = () => {
           <div style={{marginBottom: '1rem'}}>
             <div>
               <label htmlFor="type">Type</label>
-              <Field as="select" id="type" name="type">
+              <Field as="select" id="productType" name="type">
                 <option value="DVD">DVD</option>
                 <option value="Book">Book</option>
                 <option value="Furniture">Furniture</option>
@@ -193,7 +193,7 @@ const MyForm: React.FC = () => {
             <>
             <div style={{marginBottom: '1rem'}}>
               <div>
-                <label htmlFor="weight">Weight:</label>
+                <label htmlFor="weight">Weight (KG)</label>
                 <Field type="number" id="weight" name="weight" />
               </div>
               <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
@@ -208,7 +208,7 @@ const MyForm: React.FC = () => {
           <>
             <div style={{marginBottom: '1rem'}}>
               <div>
-                <label htmlFor="height">Height:</label>
+                <label htmlFor="height">Height (CM)</label>
                 <Field type="number" id="height" name="height" />
               </div>
               <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
@@ -218,7 +218,7 @@ const MyForm: React.FC = () => {
 
             <div style={{marginBottom: '1rem'}}>
               <div>
-                <label htmlFor="width">Width:</label>
+                <label htmlFor="width">Width (CM)</label>
                 <Field type="number" id="width" name="width" />
               </div>
               <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
@@ -228,7 +228,7 @@ const MyForm: React.FC = () => {
 
             <div style={{marginBottom: '1rem'}}>
               <div>
-                <label htmlFor="length">Length:</label>
+                <label htmlFor="length">Length (CM)</label>
                 <Field type="number" id="length" name="length" />
               </div>
               <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
