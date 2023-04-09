@@ -1,24 +1,15 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
-import * as Yup from 'yup';
-import { isValidSKU } from '../../helpers/syntaxCheck';
-import postData from '../../services/post';
-import { useNavigate } from "react-router-dom"
 import './Form.scss'
 
-type FormValues = {
-  sku: string;
-  name: string;
-  price: string;
-  type: string;
-  size?: string;
-  weight?: string;
-  height?: string;
-  width?: string;
-  length?: string;
-};
+import React from 'react';
+import * as Yup from 'yup';
+import { useNavigate } from "react-router-dom"
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 
-const initialValues: FormValues = {
+import { isValidSKU } from '../../helpers/syntaxCheck';
+import postData from '../../services/post';
+import {ProductType} from '../../types';
+
+const initialValues: ProductType = {
   sku: '',
   name: '',
   price: '',
@@ -39,7 +30,7 @@ const validationSchema = Yup.object({
   type: Yup.string().required('Type is required'),
   size: Yup.number().test(
     'requiredIfDVD',
-    'Size is required for DVD',
+    'Size is required',
     function (value, context) {
       const { type } = context.parent as { type: string };
       if (type === 'DVD' && (value === undefined || value === null || value <= 0)) {
@@ -50,7 +41,7 @@ const validationSchema = Yup.object({
   ),
   weight: Yup.number().test(
     'requiredIfBook',
-    'Weight is required for Book',
+    'Weight is required',
     function (value, context) {
       const { type } = context.parent as { type: string };
       if (type === 'Book' && (value === undefined || value === null || value <= 0)) {
@@ -61,7 +52,7 @@ const validationSchema = Yup.object({
   ),
   height: Yup.number().test(
     'requiredIfFurniture',
-    'Height is required for Furniture',
+    'Height is required',
     function (value, context) {
       const { type } = context.parent as { type: string };
       if (type === 'Furniture' && (value === undefined || value === null || value <= 0)) {
@@ -72,7 +63,7 @@ const validationSchema = Yup.object({
   ),
   width: Yup.number().test(
     'requiredIfFurniture',
-    'Width is required for Furniture',
+    'Width is required',
     function (value, context) {
       const { type } = context.parent as { type: string };
       if (type === 'Furniture' && (value === undefined || value === null || value <= 0)) {
@@ -83,7 +74,7 @@ const validationSchema = Yup.object({
   ),
   length: Yup.number().test(
     'requiredIfFurniture',
-    'Length is required for Furniture',
+    'Length is required',
     function (value, context) {
       const { type } = context.parent as { type: string };
       if (type === 'Furniture' && (value === undefined || value === null || value <= 0)) {
@@ -97,9 +88,9 @@ const validationSchema = Yup.object({
 const MyForm: React.FC = () => {
   
   let navigate = useNavigate();
-
-  const onSubmit = (values: FormValues, formikHelpers: FormikHelpers<FormValues>) => {
+  
     // Handle form submission here
+  const onSubmit = (values: ProductType, formikHelpers: FormikHelpers<ProductType>) => {
     console.log(values);
     const POST_URL = process.env.REACT_APP_POST_URL;
     postData({ url: POST_URL as string, formData: values })
@@ -114,7 +105,7 @@ const MyForm: React.FC = () => {
         alert('error: ' + error);
       });
     formikHelpers.setSubmitting(false);
-    console.log('Form data', values);
+    // console.log('Form data', values);
   };
 
   return (
@@ -126,7 +117,7 @@ const MyForm: React.FC = () => {
               <label htmlFor="sku">SKU:</label>
               <Field type="text" id="sku" name="sku" />
             </div>
-            <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
+            <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
               <ErrorMessage name="sku" component="span" />
             </div>
           </div>
@@ -136,7 +127,7 @@ const MyForm: React.FC = () => {
               <label htmlFor="name">Name:</label>
               <Field type="text" id="name" name="name" />
             </div>
-            <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
+            <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
               <ErrorMessage name="name" component="span" />
             </div>
           </div>
@@ -144,18 +135,9 @@ const MyForm: React.FC = () => {
           <div style={{marginBottom: '1rem'}}>
             <div>
               <label htmlFor="price">Price ($)</label>
-                <Field
-                  type="number"
-                  id="price"
-                  name="price"
-                  onKeyPress={(event: React.KeyboardEvent<HTMLInputElement>) => {
-                    if (event.key.toLowerCase() === 'e') {
-                      event.preventDefault();
-                    }
-                  }}
-              />
+                <Field type="number" id="price" name="price" />
             </div>
-            <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
+            <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
               <ErrorMessage name="price" component="span" />
             </div>
           </div>
@@ -169,7 +151,7 @@ const MyForm: React.FC = () => {
                 <option value="Furniture">Furniture</option>
               </Field>
             </div>
-            <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
+            <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
               <ErrorMessage name="type" component="span" />
             </div>
           </div>
@@ -181,7 +163,7 @@ const MyForm: React.FC = () => {
                   <label htmlFor="size">Size (MB)</label>
                   <Field type="number" id="size" name="size" />
                 </div>
-                <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
+                <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
                   <ErrorMessage name="size" component="span" />
                 </div>
               </div>
@@ -196,7 +178,7 @@ const MyForm: React.FC = () => {
                 <label htmlFor="weight">Weight (KG)</label>
                 <Field type="number" id="weight" name="weight" />
               </div>
-              <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
+              <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
                 <ErrorMessage name="weight" component="span" />
               </div>
             </div>
@@ -211,7 +193,7 @@ const MyForm: React.FC = () => {
                 <label htmlFor="height">Height (CM)</label>
                 <Field type="number" id="height" name="height" />
               </div>
-              <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
+              <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
                 <ErrorMessage name="height" component="span" />
               </div>
             </div>
@@ -221,7 +203,7 @@ const MyForm: React.FC = () => {
                 <label htmlFor="width">Width (CM)</label>
                 <Field type="number" id="width" name="width" />
               </div>
-              <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
+              <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
                 <ErrorMessage name="width" component="span" />
               </div>
             </div>
@@ -231,7 +213,7 @@ const MyForm: React.FC = () => {
                 <label htmlFor="length">Length (CM)</label>
                 <Field type="number" id="length" name="length" />
               </div>
-              <div style={{marginLeft: '15%', marginTop: '.5rem'}}>
+              <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
                 <ErrorMessage name="length" component="span" />
               </div>
             </div>
