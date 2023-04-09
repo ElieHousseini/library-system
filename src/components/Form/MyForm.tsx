@@ -3,12 +3,13 @@ import './Form.scss'
 import React from 'react';
 import * as Yup from 'yup';
 import { useNavigate } from "react-router-dom"
-import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 
 import { isValidSKU } from '../../helpers/syntaxCheck';
 import postData from '../../services/post';
 import {ProductType} from '../../types';
-import FormItem from './FormItem/FormItem';
+import FormItemInput from './FormItemInput/FormItemInput';
+import FormItemSelect from './FormItemSelect/FormItemSelect';
 
 const initialValues: ProductType = {
   sku: '',
@@ -92,7 +93,6 @@ const MyForm: React.FC = () => {
   
     // Handle form submission here
   const onSubmit = (values: ProductType, formikHelpers: FormikHelpers<ProductType>) => {
-    console.log(values);
     const POST_URL = process.env.REACT_APP_POST_URL;
     postData({ url: POST_URL as string, formData: values })
       .then(({ success, message }) => {
@@ -106,49 +106,36 @@ const MyForm: React.FC = () => {
         alert('error: ' + error);
       });
     formikHelpers.setSubmitting(false);
-    // console.log('Form data', values);
   };
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
       {({values, errors, isSubmitting}) => (
         <Form>
-          <FormItem name='sku' fieldType='text' labelTxt='SKU'/>
-          <FormItem name='name' fieldType='text' labelTxt='Name'/>
-          <FormItem name='price' fieldType='number' labelTxt='Price ($)'/>
-          <div style={{marginBottom: '1rem'}}>
-            <div>
-              <label htmlFor="type">Type</label>
-              <Field as="select" id="productType" name="type">
-                <option value="DVD">DVD</option>
-                <option value="Book">Book</option>
-                <option value="Furniture">Furniture</option>
-              </Field>
-            </div>
-            <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
-              <ErrorMessage name="type" component="span" />
-            </div>
-          </div>
+          <FormItemInput name='sku' fieldType='text' labelTxt='SKU'/>
+          <FormItemInput name='name' fieldType='text' labelTxt='Name'/>
+          <FormItemInput name='price' fieldType='number' labelTxt='Price ($)'/>
+          <FormItemSelect id="productType" name='type' fieldType='select' labelTxt='Type' options= {["DVD", "Book", "Furniture"]}/>
 
           {values.type === 'DVD' && (
             <>
-              <FormItem name='size' fieldType='number' labelTxt='Size (MB)' />
+              <FormItemInput name='size' fieldType='number' labelTxt='Size (MB)' />
               <h4>Please, provide size</h4>
             </>
           )}
           
           {values.type === 'Book' && (
             <>
-            <FormItem name='weight' fieldType='number' labelTxt='Weight (KG)' />
+            <FormItemInput name='weight' fieldType='number' labelTxt='Weight (KG)' />
             <h4>Please, provide weight</h4>
             </>
           )}
 
           {values.type === 'Furniture' && (
           <>
-            <FormItem name='height' fieldType='number' labelTxt='Height (CM)' />
-            <FormItem name='width' fieldType='number' labelTxt='Width (CM)' />
-            <FormItem name='length' fieldType='number' labelTxt='Length (CM)' />
+            <FormItemInput name='height' fieldType='number' labelTxt='Height (CM)' />
+            <FormItemInput name='width' fieldType='number' labelTxt='Width (CM)' />
+            <FormItemInput name='length' fieldType='number' labelTxt='Length (CM)' />
             <h4>Please, provide dimensions</h4>
           </>
           )}

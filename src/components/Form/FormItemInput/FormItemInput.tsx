@@ -1,4 +1,4 @@
-import './FormItem.scss'
+import './FormItemInput.scss'
 
 import { Field, ErrorMessage } from 'formik';
 
@@ -8,7 +8,7 @@ type FormItemType = {
     labelTxt: string
 }
 
-const FormItem = ({name, fieldType, labelTxt} : FormItemType) => {
+const FormItemInput = ({name, fieldType, labelTxt} : FormItemType) => {
     return(
         <div className='parent-form-item'>
             <div>
@@ -22,4 +22,4 @@ const FormItem = ({name, fieldType, labelTxt} : FormItemType) => {
     )
 }
 
-export default FormItem
+export default FormItemInput
