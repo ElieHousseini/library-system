@@ -8,6 +8,7 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import { isValidSKU } from '../../helpers/syntaxCheck';
 import postData from '../../services/post';
 import {ProductType} from '../../types';
+import FormItem from './FormItem/FormItem';
 
 const initialValues: ProductType = {
   sku: '',
@@ -112,36 +113,9 @@ const MyForm: React.FC = () => {
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
       {({values, errors, isSubmitting}) => (
         <Form>
-          <div style={{marginBottom: '1rem'}}>
-            <div>
-              <label htmlFor="sku">SKU:</label>
-              <Field type="text" id="sku" name="sku" />
-            </div>
-            <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
-              <ErrorMessage name="sku" component="span" />
-            </div>
-          </div>
-
-          <div style={{marginBottom: '1rem'}}>
-            <div>
-              <label htmlFor="name">Name:</label>
-              <Field type="text" id="name" name="name" />
-            </div>
-            <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
-              <ErrorMessage name="name" component="span" />
-            </div>
-          </div>
-
-          <div style={{marginBottom: '1rem'}}>
-            <div>
-              <label htmlFor="price">Price ($)</label>
-                <Field type="number" id="price" name="price" />
-            </div>
-            <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
-              <ErrorMessage name="price" component="span" />
-            </div>
-          </div>
-
+          <FormItem name='sku' fieldType='text' labelTxt='SKU'/>
+          <FormItem name='name' fieldType='text' labelTxt='Name'/>
+          <FormItem name='price' fieldType='number' labelTxt='Price ($)'/>
           <div style={{marginBottom: '1rem'}}>
             <div>
               <label htmlFor="type">Type</label>
@@ -158,65 +132,23 @@ const MyForm: React.FC = () => {
 
           {values.type === 'DVD' && (
             <>
-              <div style={{marginBottom: '1rem'}}>
-                <div>
-                  <label htmlFor="size">Size (MB)</label>
-                  <Field type="number" id="size" name="size" />
-                </div>
-                <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
-                  <ErrorMessage name="size" component="span" />
-                </div>
-              </div>
+              <FormItem name='size' fieldType='number' labelTxt='Size (MB)' />
               <h4>Please, provide size</h4>
             </>
           )}
           
           {values.type === 'Book' && (
             <>
-            <div style={{marginBottom: '1rem'}}>
-              <div>
-                <label htmlFor="weight">Weight (KG)</label>
-                <Field type="number" id="weight" name="weight" />
-              </div>
-              <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
-                <ErrorMessage name="weight" component="span" />
-              </div>
-            </div>
+            <FormItem name='weight' fieldType='number' labelTxt='Weight (KG)' />
             <h4>Please, provide weight</h4>
             </>
           )}
 
           {values.type === 'Furniture' && (
           <>
-            <div style={{marginBottom: '1rem'}}>
-              <div>
-                <label htmlFor="height">Height (CM)</label>
-                <Field type="number" id="height" name="height" />
-              </div>
-              <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
-                <ErrorMessage name="height" component="span" />
-              </div>
-            </div>
-
-            <div style={{marginBottom: '1rem'}}>
-              <div>
-                <label htmlFor="width">Width (CM)</label>
-                <Field type="number" id="width" name="width" />
-              </div>
-              <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
-                <ErrorMessage name="width" component="span" />
-              </div>
-            </div>
-
-            <div style={{marginBottom: '1rem'}}>
-              <div>
-                <label htmlFor="length">Length (CM)</label>
-                <Field type="number" id="length" name="length" />
-              </div>
-              <div style={{marginLeft: '18%', marginTop: '.5rem'}}>
-                <ErrorMessage name="length" component="span" />
-              </div>
-            </div>
+            <FormItem name='height' fieldType='number' labelTxt='Height (CM)' />
+            <FormItem name='width' fieldType='number' labelTxt='Width (CM)' />
+            <FormItem name='length' fieldType='number' labelTxt='Length (CM)' />
             <h4>Please, provide dimensions</h4>
           </>
           )}
