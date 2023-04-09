@@ -1,0 +1,12 @@
+@import '../../global.scss';
+
+#controlled_switcher{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    align-items: center;
+    select {
+        width: 30%;
+        height: $spaces-mobile * 2;    
+    }
+}

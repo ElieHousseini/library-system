@@ -1,0 +1,25 @@
+@import '../../../global.scss';
+
+#container{
+    height: 10rem;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center; 
+    position: relative;
+    text-align: center;
+    border: $border-width solid black;
+    input{
+        position: absolute;
+        top: $spaces-mobile;
+        left: $spaces-mobile;
+    }
+}
+
+@media screen and (min-width: $breakpoint-md){
+        #container{
+            width: 23.5%;
+            margin-right: 2%;
+            margin-bottom: 2%;
+        }
+}

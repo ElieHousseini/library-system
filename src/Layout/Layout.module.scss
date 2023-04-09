@@ -1,0 +1,24 @@
+@import '../global.scss';
+
+#parent{
+    margin-left: $spaces-mobile;
+    margin-right: $spaces-mobile;
+    padding-top: $spaces-mobile;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh
+    // min-height: -webkit-fill-available;
+}
+
+@media screen and (min-width: $breakpoint-xl){
+    @media screen and (orientation: landscape){
+        #parent{
+            margin-left: $spaces-desktop;
+            margin-right: $spaces-desktop;
+            padding-top: $spaces-desktop;
+            width: 60%;
+            margin: auto;
+    
+        }
+    }
+}

@@ -1,0 +1,45 @@
+@import '../../../global.scss';
+
+
+#Product-list-container{
+    border-bottom: $border-width solid black;
+    padding-bottom: $spaces-mobile;
+    #parent{
+        text-align: center;
+        #btnParent{
+            margin-top: 1rem;
+            #add-product-btn{
+                background-color: rgba(173,216,230, 1);
+                color: black;
+                margin-right: $spaces-mobile;
+                &:hover{
+                    background-color: rgba(173,216,230, .5);
+                }
+            }
+            #delete-product-btn{
+                background-color: rgba(240,128,128, 1);
+                color: black;
+                &:hover{
+                    background-color: rgba(240,128,128, .5);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    #Product-list-container{
+        display: flex;
+        align-items: center;
+
+        #parent{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            #btnParent{
+                margin-top: unset;
+            }
+        }
+    }
+}

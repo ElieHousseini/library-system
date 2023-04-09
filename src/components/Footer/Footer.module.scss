@@ -1,0 +1,12 @@
+@import '../../global.scss';
+
+footer{
+    margin-top: auto;
+    #container{
+        border-top: $border-width solid black;
+        height: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

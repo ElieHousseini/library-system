@@ -1,0 +1,24 @@
+@import '../../global.scss';
+
+#container{
+    margin-top: $spaces-mobile * 2;
+    margin-bottom: $spaces-mobile;
+    #parent{
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spaces-mobile;
+    }
+}
+
+@media screen and (min-width: $breakpoint-md){
+    #container{
+        margin-top: $spaces-desktop;
+        margin-bottom: $spaces-desktop;
+        #parent{
+            gap: unset;
+            :nth-child(4n) {
+                margin-right: 0%;
+            }
+        }
+    }
+}

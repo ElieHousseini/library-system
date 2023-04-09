@@ -1,0 +1,44 @@
+@import '../../../global.scss';
+
+
+#Product-add-container{
+    border-bottom: $border-width solid black;
+    padding-bottom: $spaces-mobile;
+    #parent{
+        text-align: center;
+        #btnParent{
+            margin-top: 1rem;
+            #save-product-btn{
+                background-color: rgba(173,216,230, 1);
+                color: black;
+                margin-right: $spaces-mobile;
+                &:hover{
+                    background-color: rgba(173,216,230, .5);
+                }
+            }
+            #cancel-product-btn{
+                background-color: rgba(211,211,211, 1);
+                color: black;
+                &:hover{
+                    background-color: rgba(211,211,211, .5);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    #Product-add-container{
+        display: flex;
+        align-items: center;
+        #parent{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            #btnParent{
+                margin-top: unset;
+            }
+        }
+    }
+}
