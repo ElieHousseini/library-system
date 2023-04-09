@@ -1,5 +1,5 @@
 import Footer from "../components/Footer/Footer"
-import Form from "../components/Form/Form"
+import MyForm from "../components/Form/MyForm"
 import Header from "../components/Header/ProductAdd/Header"
 import Layout from "../Layout/Layout"
 
@@ -8,7 +8,7 @@ const ProductAdd = () : JSX.Element => {
     return(
         <Layout>
             <Header />
-            <Form />
+            <MyForm />
             <Footer text="Lib System"/>
         </Layout>
     )

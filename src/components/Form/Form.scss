@@ -1,26 +1,75 @@
-@import '../../global.scss';
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin-top: 2rem;
+  border-radius: 5px;
+}
+
+div.form-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
 
 label {
-    width: 30%;
+  display: inline-block;
+  width: 15%;
+  margin-right: 0;
 }
 
-#product_form{
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    // width: 100%;
+input[type='text'],
+select,
+input[type='number'] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  flex: 1;
+  width: 85%;
+  box-sizing: border-box;
 }
 
-#description-of-type{
-    text-align: center;
-    margin-top: 1rem;
+input[type='text']:focus,
+select:focus,
+input[type='number']:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
 }
 
-.input-error{
-    border: 2px solid red;
+.form-input-error {
+  color: red;
+  margin-top: 5px;
 }
 
-@media screen and (min-width: $breakpoint-md) {
-    #product_form{
-        width: 30rem;
-    }
+button[type='submit'] {
+  padding: 10px 20px;
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  visibility:hidden;
+}
+
+button[type='submit']:hover {
+  background-color: #004499;
+}
+
+h4{
+  text-align: center;
+}
+
+input.error {
+  border-color: red;
+}
+
+select.error {
+  border-color: red;
+}
+
+textarea.error {
+  border-color: red;
 }
