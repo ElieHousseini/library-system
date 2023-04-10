@@ -1,4 +1,4 @@
-import './Form.scss'
+import './MyForm.scss'
 
 import React from 'react';
 import * as Yup from 'yup';

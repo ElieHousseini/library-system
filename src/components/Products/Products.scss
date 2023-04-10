@@ -1,6 +1,6 @@
 @import '../../global.scss';
 
-#container{
+#products_container{
     margin-top: $spaces-mobile * 2;
     margin-bottom: $spaces-mobile;
     #parent{
@@ -8,10 +8,13 @@
         flex-wrap: wrap;
         gap: $spaces-mobile;
     }
+    #massDeleteBtn{
+        visibility: hidden;
+    }
 }
 
 @media screen and (min-width: $breakpoint-md){
-    #container{
+    #products_container{
         margin-top: $spaces-desktop;
         margin-bottom: $spaces-desktop;
         #parent{

@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom"
 import ControlledButton from '../../ControlledButton/ControlledButton'
 
 const Header = () : JSX.Element => {
+    
     let navigate = useNavigate(); 
 
     const handleSaveBtnClick = () : void => {
-        const submitButton = document.querySelector('#form-submit') as HTMLButtonElement;
+        const submitButton = document.getElementById('form-submit') as HTMLButtonElement;
         submitButton.click()
     }
 
